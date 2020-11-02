@@ -1,0 +1,31 @@
+class OperateDemo4 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(2<<3);     // 用移位方法算2*8
+		// 对两个整数变量的值进行互换
+		// 第一种方法，引入第三个变量temp， 这是一种推荐的方法。
+		/*
+		int a = 2, b = 3, temp;
+		temp = a;
+		a = b;
+		b = temp;
+		System.out.println("a="+a+","+"b="+b);
+		*/
+		// 第二种方法，使用加法运算，但是存在问题，可能会有溢出的情况出现
+		/*
+		int a = 2, b = 3;
+		a = a+b;
+		b = a - b;
+		a = a - b;
+		System.out.println("a="+a+","+"b="+b);
+		*/
+		// 第三种方法， 使用异或的方法
+		int a = 2, b = 3;
+		a = a ^ b;
+		b = a ^ b;
+		a = b ^ a;
+		System.out.println("a="+a+","+"b="+b);
+
+	}
+}

@@ -1,0 +1,33 @@
+/*
+作者：huermosy
+需求：1.根据常数的数值，输出对应的星期数
+	  2.根据用于指定的月份，打印该月份所属的季节。3,4,5春季 6,7,8夏季 9,10,11秋季  12,1,2冬季
+*/
+class IfTest  
+{
+	public static void main(String[] args) 
+	{
+		int n = 2;
+		if(n==1)
+			System.out.println("Monday");
+		else if(n==2)
+			System.out.println("Tuesday");
+		else
+			System.out.println("输入错误");
+		//System.out.println("Hello World!");
+		int m = 3;
+
+		if(m == 3|| m==4 || m==5)                // 两个链接符的好处：只要一边满足了条件就不用检测另一边，执行效率提高
+			System.out.println(x+"春季");
+		else if(m == 6|| m==7 ||m==8)
+			System.out.println(x+"夏季");
+		else if(m == 9|| m==10 || m==11)
+			System.out.println(x+"秋季");
+		else if(m == 12|| m==1 || m==2)
+			System.out.println(x+"冬季");
+		else
+			System.out.println("输入错误,月份不存在！");
+		{
+		}
+	}
+}
