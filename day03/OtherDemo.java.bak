@@ -1,0 +1,26 @@
+/*
+作者：huermosy
+需求：1.了解一下for循环的标号
+*/
+class  OtherDemo
+{
+	public static void main(String[] args) 
+	{
+		w:for(int x=0; x<3; x++)
+		{
+			q:for(int y=0; y<4; y++)
+			{
+				System.out.println("x="+x);
+				break w;
+			}
+		}
+		for(int x=0; x<3; x++)
+		{
+			for(int y=0; y<4; y++)
+			{
+				System.out.println("x="+x);
+				continue;
+			}
+		}
+	}
+}

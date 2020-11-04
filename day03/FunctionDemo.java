@@ -1,0 +1,26 @@
+/*
+作者：huermosy
+需求：定义函数，并且使用函数，了解函数的功能
+步骤：1.计算一下 x*3+6 这一个式子的结果
+2. 改变一下函数输出的数据类型，看一下操作的结果。
+*/
+class FunctionDemo 
+{
+	public static void main(String[] args) 
+	{
+		int sum = result(9);
+		System.out.println("result="+sum);
+		result1(9);
+	}
+
+	public static int result(int num)
+	{
+		return num *3 + 6;
+	}
+	// 第二种写法，在功能函数里直接输出为print，此时函数的返回值类型为void
+	public static void result1(int num)
+	{
+		System.out.println("result=" + (num *3 + 6));
+	//	return;   //此处的return可以不写，省略。
+	}
+}
