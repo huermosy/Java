@@ -1,0 +1,38 @@
+/*
+重点！ 理解一下对象的初始化过程
+*/
+class Person
+{
+	private String name;
+	private int age;
+	private static String country = "cn";      // 这里给一个static静态变量，因为国籍是很多共性的东西
+	Person(String name, int age)       // 这是一个类的构造函数
+	{
+		this.name = name;
+		this.age = age;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public void speak()
+	{
+		System.out.println(this.name+"..."+this.age);
+	}
+
+	public void countryshow()
+	{
+		System.out.println("country:"+country);
+	}
+}
+
+
+class PersonDemo 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
