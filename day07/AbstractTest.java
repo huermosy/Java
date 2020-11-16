@@ -1,0 +1,65 @@
+/*
+抽象方法的练习：
+定义员工：包括经理和普通员工。员工共有3个属性：分别是年龄，薪水与对应的id； 员工有对应的方法名：work，但是因为经理与普工的工作都不同，因此我们定义一个抽象类方法即可。
+普通员工的工作
+经理的工作，还外加了bonus奖金这一个属性
+
+*/
+abstract class Workers
+{ 
+	// 对应三个属性
+	private int age;
+	private int pay;
+	private int id;
+ 
+	Workers(int age, int pay, int id)     // 构造函数
+	{
+		this.age = age;
+		this.pay = pay;
+		this.id = id;
+	}
+
+	public abstract void work();    // 定义抽象方法
+
+}
+
+class Normal extends Workers    // 普工
+{
+	private int bonus;
+	Normal(int age, int pay, int id)
+	{
+		super(age,pay,id);
+	}
+
+	public void work()      // 子类的访问权限应该大于父类
+	{
+		System.out.println("普工工作。");
+	}
+}
+
+class Managers extends Workers    // 经理
+{
+	private int bonus;
+	Managers(int age, int pay, int id, int bonus)
+	{
+		super(age, pay,id);
+		this.bonus = bonus;
+	}
+
+	public void work()
+	{
+		System.out.println("经理工作。");
+	}
+}
+
+
+
+class  AbstractTest
+{
+	public static void main(String[] args) 
+	{
+		Managers w = new Managers(30,40000,5222,10000);
+		w.work();
+		//System.out.println("Hello World!");
+	}
+}

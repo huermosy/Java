@@ -1,0 +1,50 @@
+/*
+作者：huermosy
+需求：了解extends关键字，学习继承这一个知识点     继承的引入：
+我们知道有些情况下，事物与事物之间存在着某个共性，所以我们就需要将这个共性抽取出来， 专门来描述，来提高代码的复用性。
+
+注意：千万不要一昧的为了代码的简化而简化，一定是要注意类与类之间是有互相的联系才可以继承
+*/
+class Person
+{
+	int age;
+	String Name;
+} 
+
+
+class Student extends Person
+{
+	/*
+	int age;
+	String name;
+	*/
+	void study()
+	{
+		System.out.println("good study!");
+	}
+}
+
+
+class Worker extends Person
+{
+	/*
+	int age;
+	String name;
+	*/
+	void work()
+	{
+		System.out.println("good work!");
+	}
+}
+
+class  ExtendsDemo
+{
+	public static void main(String[] args) 
+	{
+		Student s = new Student();
+		s.study();
+		Worker w = new Worker();
+		w.work();
+		//System.out.println("Hello World!");
+	}
+}

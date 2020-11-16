@@ -1,0 +1,48 @@
+/*
+研究一下继承的更多特性
+子父类中变量的特点 第86讲
+ 
+*/
+class Fu
+{
+	int num = 3;
+}
+
+class Zi extends Fu
+{
+	private int num = 4;
+	void show()
+	{
+		System.out.println(num);   // 现在这个num是this.num
+	}
+}
+
+class Tel
+{
+	void show()
+	{
+		System.out.println("age");
+	}
+}
+
+class NewTel extends Tel
+{
+	void show()
+	{
+		super.show();   // 继承父类中的show方法
+		System.out.println("name");
+	}
+}
+
+
+class  ExtendDemo3
+{
+	public static void main(String[] args) 
+	{
+		Zi z = new Zi();
+		z.show();
+		NewTel t = new NewTel();
+		t.show();
+	}
+}
+
