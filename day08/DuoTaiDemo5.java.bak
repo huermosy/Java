@@ -1,0 +1,75 @@
+/*
+多态         这个例子有必要再写一遍
+电脑主板实例
+有一个pci-e的接口
+从接口可以接入 网卡、声卡    接口可以提高程序扩展性 多态
+*/
+
+interface Pci
+{
+	public void open();   // 主板开启与主板关闭
+	public void close();
+}
+
+class Mainboard // 主板
+{
+	public void run()
+	{
+		System.out.println("run");
+	}
+
+	public void usePci(Pci p)    // 为implements的子类和父类  Pci p = new 子类名();  多态的体现！！！
+	{
+		if(p != null)
+		{
+			 p.open();     // 多态方法 的调用相当于    Pci p = new 类名（）;
+			 p.close();
+		}
+	}
+	/*
+	public void useNetCard(NetCard c)
+	{
+		c.open();
+		c.close();
+	}
+	*/
+}
+
+class NetCard implements Pci   // 网卡在pci上实现,      网卡实现了Pci这一个类，弥补了继承的缺失功能
+{
+	public void open()
+	{
+		System.out.println("NetCard open");
+	}
+ 
+	public void close()
+	{
+		System.out.println("NetCard close");
+	}
+}
+
+class SoundCard implements Pci   // 网卡在pci上实现,      网卡实现了Pci这一个类，弥补了继承的缺失功能
+{
+	public void open()
+	{
+		System.out.println("SoundCard open");
+	}
+ 
+	public void close()
+	{
+		System.out.println("SoundCard close");
+	}
+}
+
+class  DuoTaiDemo5
+{
+	public static void main(String[] args) 
+	{
+		Mainboard c = new Mainboard();
+		c.run();
+		c.usePci(null);
+		c.usePci(new NetCard() );   // 创建网卡的匿名对象并且使用pci, 相当于pci只是一个中间的过渡
+		c.usePci(new SoundCard());
+		//System.out.println("Hello World!");
+	}
+}
