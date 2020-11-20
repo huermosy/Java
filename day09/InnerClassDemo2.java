@@ -1,0 +1,54 @@
+/*
+面向对象(匿名内部类)
+当内部类定义在局部时，有以下特点：
+1. 不能够被修饰符给修饰
+2. 可以直接使用外部类中的变量，而局部中的变量需要被final修饰，  好像没有发现这一点啊。。
+
+匿名内部类就是没有名字的内部类，
+*/
+
+
+// 内部事物中还有内部事物的一个体现，人和心脏,心脏是一个内部事物，不让人看见，所以用private封装
+/*
+class Body
+{
+	private class Heart
+	{
+	}
+
+	public void show()
+	{
+		new Heart().
+	}
+}
+
+*/
+
+class Outer
+{
+	int x = 3;
+	void method(final int a)
+	{
+		int y = 4;
+		class Inner
+		{
+			void function()
+			{
+				System.out.println(a);
+			}
+		}
+		new Inner().function();
+	}
+}
+
+class InnerClassDemo2
+{
+	public static void main(String[] args) 
+	{
+		new Outer().method(8);
+		new Outer().method(9);   // 虽然是final 但是出栈之后就给a新的变量了。
+		Outer o = new Outer();
+		o.method(10);
+		//System.out.println("Hello World!");
+	}
+}
