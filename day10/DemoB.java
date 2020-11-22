@@ -1,0 +1,11 @@
+
+
+package packb;         // 在与DemoB同一个文件夹中
+
+public class DemoB   
+{
+	protected  void method() /*这是一个保护权限，必须是儿子才能够访问，也就是说是因为DemoA继承了DemoB，必须通过DemoA这一个儿子，才能够访问DemoB.所以就不能够通过直接调用的方式，必须间接调用这个方法*/
+	{
+		System.out.println("DemoB run");
+	}
+}
