@@ -1,0 +1,46 @@
+/*
+多线程-单例设计模式-懒汉式
+
+什么是单例设计模式： 一个类保证只有一个实例; 创建的方法分为饿汉式与懒汉式。
+饿汉式： 先把对象new出来实例化;
+懒汉式： 把对象指为空，然后经过判断是否为空来new，具有延时加载的特性。
+
+饿汉式：
+class Single
+{
+private static final Single s = new Single();
+private Single(){}
+private void getSingle()
+{
+	return s;
+}
+}
+
+下面我写一个懒汉式：
+因为懒汉式有点麻烦
+*/
+
+class Single
+{
+	private  Single s = null;
+	private Single(){}
+	private synchronized void getSingle()    // 现在可以理解一下锁的功能了   第二次进来的时候就不用创建新的对象了。
+	{
+		if(s==null)
+		synchronized(Single.class)
+		{
+			if(s==null)
+				s = new Single();
+			return s;
+		}
+	}
+
+}
+
+class  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
