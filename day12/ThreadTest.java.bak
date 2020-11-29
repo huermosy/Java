@@ -1,0 +1,48 @@
+/*
+	用三种方法实现 多线程的封装
+*/
+class  ThreadTest
+{
+	public static void main(String[] args) 
+	{
+		new Thread()
+		{
+			public void run()
+			{
+				for(int x=0; x<100; x++)
+				{
+					System.out.println(Thread.currentThread().getName().toString()+"-----run---"+x);
+				}
+			} 
+		}.start();       // 用Thread()函数中断的方式
+
+		Runnable r = new Runnable()
+		{
+			public void run()
+			{
+				for(int x=0; x<=100; x++)
+				{
+					System.out.println(Thread.currentThread().getName().toString()+"-----run---"+x);
+				}
+			}
+		};
+
+		new Thread(r).start();   // 注意这里调用只能从Thread开始调用。
+
+		Demo d = new Demo();
+		d.start();
+	}
+}
+
+
+class Demo extends Thread
+{
+	public void run()
+	{
+		for(int x=0; x<100; x++)
+		{
+			System.out.println(Thread.currentThread().getName().toString()+"-----run---"+x);
+		}
+	}
+}
+ 
