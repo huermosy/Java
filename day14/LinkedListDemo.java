@@ -1,0 +1,79 @@
+/*
+把API给抄一下。。。
+链表 
+LinkedList: 特有方法
+增加
+addFirst(E e) 
+在此列表的开始处插入指定的元素。 
+addLast(E e) 
+将指定的元素列表的结束。 
+
+获取
+getFirst() 
+返回此列表中的第一个元素。 
+getLast() 
+返回此列表中的最后一个元素。 
+
+移除
+ removeFirst() 
+移除并返回此列表中的第一个元素。 
+ removeLast() 
+移除并返回此列表中的最后一个元素。 
+
+在JDK1.6中出现了替代方法。
+
+增加
+offerFirst(E e) 
+在列表的前面插入指定的元素。  
+offerLast(E e) 
+在列表的结尾插入指定的元素。 
+
+获取
+peekFirst() 
+检索，但不删除该列表的第一个元素，或返回 null如果这个列表是空的。 
+ 
+E peekLast() 
+检索，但不删除该列表的最后一个元素，或返回 null如果这个列表是空的。  
+
+
+移除
+pollFirst() 
+检索并移除此列表的第一个元素，或返回 null如果这个列表是空的。 
+ 
+E pollLast() 
+检索并移除此列表的最后一个元素，或返回 null如果这个列表是空的。  
+
+*/
+import java.util.*;
+
+class  LinkedListDemo
+{
+
+	public static void sop(Object obj)
+	{
+		System.out.println(obj);
+	}
+	public static void main(String[] args) 
+	{
+		LinkedList ls = new LinkedList();
+		// 1.增加
+		ls.offerFirst("java01");
+		ls.offerFirst("java02");
+		ls.offerFirst("java03");
+		ls.offerFirst("java04");
+		// 2.获取元素，但是元素不被删除
+ 
+		sop(ls.peekFirst());   // 每次都是第一个元素
+//			sop(ls.peekLast());
+		//3.获取元素但是元素被删除。
+//		for(int x=0; x<ls.size(); x++)
+//			sop(ls.pollFirst());
+		while(!ls.isEmpty())
+			sop("删除元素："+ls.pollLast());    
+		sop("数组："+ls);
+		
+		
+	}
+
+
+}

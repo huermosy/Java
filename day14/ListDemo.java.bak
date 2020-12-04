@@ -1,0 +1,116 @@
+/*
+集合框架(List集合共性方法)
+Collection
+	|--List: 元素是有序的，元素可以重复，因为该集合有索引
+	|--Set：元素是无序的，元素不可以重复。
+List：
+	特有方法：凡是可以操作角标的方法都是该列表的特有方法。
+增
+	add(index,element)
+	add(index,Collection)
+删
+	remove(index)
+改
+	set(index,element)
+查
+	get(index);
+	subList(begin,end)
+	ListIterator();    迭代器
+
+indexOf 
+subList
+
+用Iterator和ListIterator(是Iterator的子接口)进行数据的操作
+其中，如果对Iterator进行操作会发生报错，因为在迭代时，不能通过创建集合对象来操作集合
+发生的报错类型为：Exception in thread "main" java.util.ConcurrentModificationException
+报错的原因：迭代器在用到集合时，同时又用到集合的功能来操作元素的话可能会存在安全隐患。
+
+
+只用迭代器的方法操作，它的方法很少，所以引入一个ListIterator接口来扩展功能。
+
+
+但是如果用ListIterator则可以通过创建集合对向来对集合进行操作
+*/
+import java.util.*;
+class  ListDemo
+{
+	public static void method_2()
+	{
+		ArrayList al = new ArrayList();
+		// 增   增加字符串对象
+		al.add("java01");
+		al.add("java02");
+		al.add("java03");
+		al.add("java04");
+		sop(al);
+/*
+		for(Iterator t1 = al.iterator(); t1.hasNext();)
+		{
+			Object obj = t1.next();
+			if(obj.equals("java03"))
+			{
+				al.add("java04");      // 这样会报错,因为对集合和迭代一起操作
+			}
+			sop("obj:"+obj);
+		}
+		sop("al:"+al);
+ 
+ */
+//		sop("al:"+al);     
+		ListIterator t1 = al.listIterator(); 
+		while(t1.hasNext())
+		{
+			Object obj = t1.next();
+			if(obj.equals("java03"))
+				t1.add("java04");     // 这里要对对象引用进行操作
+			//sop("obj:"+obj);
+		}
+		sop("al:"+al);
+	}
+ 
+
+	public static void method_1()
+	{
+		ArrayList al = new ArrayList();
+		// 增   增加字符串对象
+		al.add("java01");
+		al.add("java02");
+		al.add("java03");
+		al.add("java04");
+		sop("原集合为："+al);
+		// 增2  在指定位置增加字符串对象
+		al.add(2,"java007");
+		sop("经过第二次增加后的集合："+al);
+
+		// 删  指定位置的删除
+		al.remove(2); 
+
+		// 改  通过索引改元素
+		al.set(3,"java_end");
+
+		// 查 通过get  和ListIterator获取元素，前者是单个，后者是可以多个
+		sop(al.get(0));
+		// 用老外的写法做一下
+		for(ListIterator t1 = al.listIterator(); t1.hasNext(); )
+		{
+			sop(t1.next());
+		}
+		// 获取字符串对应的索引位置
+		sop("该元素对应的索引位置为："+al.indexOf("java_end"));
+		// 获取子串
+		List s1 = al.subList(1,4);
+		sop("子串s1为："+s1);
+	}
+
+
+	public static void sop(Object obj)
+	{
+		System.out.println(obj);
+	}
+
+	public static void main(String[] args) 
+	{
+		method_2();
+	}
+
+}

@@ -1,0 +1,48 @@
+/*集合框架(ArrayList)练习2
+需求：输出其中不重复的元素，并存在新的列表之中
+用到的方法：contians()   hasNext()    next
+整体的编程思路：通过迭代观察该元素是否已经包含在新的容器之中了，如果没有包含，则让其加入，如果有的话就继续循环直到循环完成  迭代器Iterator的hasNext()   next()方法
+
+
+这道题还有很大问题自己搞混了都。。。。
+*/
+import java.util.*;      
+class  ArrayListTest1
+{
+	public static void main(String[] args) 
+	{
+		ArrayList a = new ArrayList();
+		a.add("java01");
+		a.add("java02");
+		a.add("java03");
+		a.add("java04");
+		a.add("java03");
+		a.add("java03");
+		sop(a);
+		newal = singleElement(a);
+		sop("newa1"+newal);
+//		System.out.println("Hello World!");
+	}
+
+	public static ArrayList singleElement(ArrayList a)
+	{
+		ArrayList newal = new ArrayList();
+		Iterator it = a.iterator();
+		while(it.hasNext())
+		{
+			Object obj = it.next();   // 将其作为对象存储
+			if(!newal.contains(obj))
+			{
+				newal.add(obj);
+			}
+		}
+		return newal;
+	}
+
+	public static void sop(Object obj)
+	{
+		System.out.println(obj);
+		
+		
+	}
+}
