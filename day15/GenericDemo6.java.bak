@@ -1,0 +1,73 @@
+/*
+编程思路：用ArrayList创建两个容器，其中一个容器存储的都是String数据类型;另一个容器存储的都是int数据类型。
+用迭代器输出，因为迭代器输出中有共性的方法，所以可以将这部分抽取出来，写成一个函数。
+
+
+? extends E :接收E类型或者E的子类型。 向上转型。
+？super E：接收E类型或者E的父类型。向下转型。
+*/
+
+import java.util.*;
+
+class  GenericDemo6
+{
+	public static void main(String[] args) 
+	{
+		/*
+		ArrayList<String> ls = new ArrayList<String>();
+		ls.add("lisi");
+		ls.add("guang");
+		ls.add("zhangsan");
+		ls.add("wanger");
+ 
+		ArrayList<Integer> nu = new ArrayList<Integer>();
+		nu.add(4);
+		nu.add(2);
+		nu.add(1);
+
+		printcoll(ls);
+		printcoll(nu);
+		*/
+		ArrayList<Student> ls = new ArrayList<Student>();       // 		ArrayList<Person> ls = new ArrayList<Student>();    用这种方式存不行。。    
+		ls.add(new Student("lisi"));
+		ls.add(new Student("wanger"));
+		ls.add(new Student("zhangsan"));
+		ls.add(new Student("xixi"));
+		ls.add(new Student("yvfan"));
+
+		printcoll(ls);
+	}
+
+	public static void printcoll(ArrayList<? extends Person> t)    // 问号是一个占位符，也可以用具体的符号， 用具体的符号有一个好处：就是可以进行操作，并且可以用到特殊的方法名,比如字符串的.length()等方法。
+	{
+		Iterator<? extends Person> it = t.iterator();
+		while(it.hasNext())
+		{
+			System.out.println("输出"+"::"+it.next().getName());      // 其中的getName为特有的方法，所以不能用？这一个占位符。
+		}
+	}
+}
+
+class Person
+{
+	private String name;
+	Person(String name)
+	{
+		this.name = name;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+}
+
+class Student extends Person     // 这里继承
+{
+//	private String name;
+	Student(String name)
+	{
+		super(name);
+	}
+}
+
