@@ -1,0 +1,120 @@
+/*
+Map扩展知识
+map集合被使用是因为具备扩展关系
+
+"yureban"   "01"  "zhangsan"
+"yureban"  "02"  "lisi"
+
+条件改变为学生对象 ：则里面没有对应的映射关系
+"yureban"  Student("01"  "zhangsan");
+"yureban"  Student("02"  "lisi");
+
+这时用的应该是List列表类型或者Set类型。   大范围是一个映射，小范围是一个list
+
+"jiuyeban"  "01"   "wangwu"
+"jiuyeban"  "02"   "zhaoliu"
+*/
+
+import java.util.*;
+
+class Student
+{
+	private String age;
+	private String name;
+	Student(String name, String age)
+	{
+		this.age = age;
+		this.name = name;
+	}
+/*
+	public String getAge()
+	{
+		return age;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+*/
+	public String toString()
+	{
+		return name+":"+age;
+	}
+}
+
+class MapDemo3 
+{
+	public static void main(String[] args) 
+	{
+		// 创建两个子集合，对应的来年各个数据类型均是String类型，然后再创建一个大集合，数据类型分别是String和子集合
+		/*
+		HashMap<String,String> yure = new HashMap<String,String>();
+		HashMap<String,String> jiuye = new HashMap<String,String>();
+		*/
+		List<Student> yure = new ArrayList<Student>();
+		List<Student> jiuye = new ArrayList<Student>();
+
+		yure.add(new Student("zhangsan", "11"));
+		yure.add(new Student("Lisi", "21"));
+		jiuye.add(new Student("Wanger", "13"));
+		jiuye.add(new Student("zhaoliu", "41"));
+
+/*
+		yure.put("zhangsan", "01");
+		yure.put("lisi", "02");
+		jiuye.put("wangwu","01");
+		jiuye.put("zhaoliu", "02");
+*/
+		HashMap<String, List<Student>> czbk = new HashMap<String, List<Student>>();
+		
+		// 对应的Map赋值
+		czbk.put("yure", yure);
+		czbk.put("jiuye", jiuye);
+		//Key_value_show(yure);
+		//Key_value_show(jiuye);
+		// 遍历czbk集合，获取所有的教室，并且打印其中的学生与编号,这个方法类似于大圈套小圈
+		
+		Iterator<String> k1 = czbk.keySet().iterator();
+		while(k1.hasNext())
+		{
+			String id = k1.next();
+			List<Student> out = czbk.get(id);
+			System.out.println(id);
+			ListShow(out);
+			//Key_value_show(out);
+
+		}
+		
+
+ 	}
+
+	// 定义一个函数来显示列表中的各个元素
+
+	public static void ListShow(List<Student> s)
+	{
+		Iterator it = s.iterator();
+		while(it.hasNext())
+		{
+			Student s1 = it.next();
+			System.out.println(s1);
+		}
+	}
+
+
+	// 定义一个函数来显示子集合中的键值，用到迭代器。
+	public static void Key_value_show(HashMap<String,String> has)
+	{
+		
+	
+		// 有了set集合才可以用迭代器取出
+		// 获取其中的keySet，并且用迭代器取出
+ 		Iterator<String> keys = has.keySet().iterator();
+		while(keys.hasNext())
+		{
+			String id = keys.next();
+			String values = has.get(id); 
+			System.out.println(id +":"+ values );
+		}
+	}
+}
