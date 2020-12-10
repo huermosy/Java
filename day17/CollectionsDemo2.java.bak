@@ -1,0 +1,53 @@
+/*
+替换反转API的练习
+掌握一下集合中的fill、replaceAll和reverse这些API。
+Collections reverseOrder
+Collections-SynList  并且又学了两个Collections工具类的API 分别是swap和shuffle
+
+*/
+
+import java.util.*;
+class  CollectionsDemo2
+{
+	public static void main(String[] args) 
+	{
+		reDemo();
+	}
+// 练习：将fill功能从换掉所有的元素变为换为指定位置的元素。
+	public static void fillDemo()
+	{
+		List<String> s = new ArrayList<String>(); 
+		s.add("a");
+		s.add("huermosy");
+		s.add("zwa");
+		s.add("a");
+		s.add("liuneng");
+
+		sop(s);
+		Collections.fill(s,"go_out");
+		
+		sop(s);
+ 	}
+	public static void reDemo()
+	{
+		List<String> s = new ArrayList<String>(); 
+		s.add("a");
+		s.add("huermosy");
+		s.add("zwa");
+		s.add("a");
+		s.add("liuneng");
+
+		sop(s);
+//		Collections.replaceAll(s,"a","xixi");
+//		Collections.reverse(s);
+//		Collections.swap(s,1,2);
+		Collections.shuffle();
+		sop(s);
+ 	}
+
+
+	public static void sop(Object obj)    // 因为输出是一个List中的内容，传入String类型的数据类型会报错。  用Object这个上帝是没有错的，只不过缺点是不能使用特有的方法 ，可以传入List<String>这个数据类型。
+	{
+		System.out.println(obj);
+	} 
+}

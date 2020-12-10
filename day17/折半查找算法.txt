@@ -1,0 +1,18 @@
+首先，角标元素的确定：min=0，max=arr.length-1，mid=(min+max)/2
+1.第一种，看元素是在这个表中的情况。
+（1）.元素key = sd   arr[min]    arr[max]
+得到arr[mid]的值为zd后记为s1，和key进行比较，zd是大于sd的，所以将   max = mid - 1，此时指向的索引为sd
+（2）.再得到mid的值为指向fd的索引，fd是小于sd的，所以此时将 min = mid +1 ，此时指向的索引为sd
+所以经过以上两个步骤就得到了要查找的索引值。
+
+2.第二种， 看元素不是在这个表中的情况。
+（1）.元素key = zh或者为zeg   然后得到min， max与 mid=(min+max)/2,同时mid的索引志祥的元素为zd
+（2）.然后zd是小于key值的，那么操作min = mid+1，得到对应的索引是指向ze的索引
+（3）.再次得到的mid值是指向zf的索引值，大于zeg关键字，那么max = mid-1 对应的是指向ze的索引值
+（4）. 还未跳出循环，那么继续这个步骤，mid对应的指向zf的索引值，大于zeg关键字，max = mid-1 指向的是对应ze的索引
+（5）.此时满足条件，可以跳出循环。
+那么我们应该return的是min的值而不是max的值的插入位置
+
+（3）. 小于zh关键字，那么min = mid+1 指向zzz的索引值
+（4）. 得到的mid是zzz，大于zh关键字，那么此时max = mid - 1, 得到max=zf跳出循环
+应该return的值是max的值插入的位置。
