@@ -1,0 +1,45 @@
+/*
+需求：定一个Person，只有吃饭的功能，但是这明显是不够的，所以我们新增一个SuperPerson增强其中的功能，同时接受Person类
+
+装饰设计模式：
+*/
+
+class Person
+{
+	public void chifan()
+	{
+		System.out.println("eating");
+	}
+}
+
+class SuperPerson   // 这是一个装饰类，增强了第一个Person类中的功能。
+{
+	private Person p;
+	SuperPerson(Person p)
+	{
+		this.p = p;
+	}
+
+	public void Superchifan()
+	{
+		//System.out.println("eating");
+		p.chifan();      // 这一条语句的功能在原有的类中有，可以直接调用，说明了被装饰的关系。
+		System.out.println("drinking");
+		System.out.println("sleeping");
+		System.out.println("cooking");
+	}
+}
+
+
+class  Zhuangshi
+{
+	public static void main(String[] args) 
+	{
+
+		Person p = new Person();
+//		p.chifan();
+		SuperPerson p1 = new SuperPerson(p);
+		p1.Superchifan();
+//		System.out.println("Hello World!");
+	}
+}

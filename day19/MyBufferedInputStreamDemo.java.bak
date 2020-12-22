@@ -1,0 +1,57 @@
+/*
+自定义字节流的缓冲区，read和write的特点，    明白一下这个创建的过程，需要数组、计数器与指针三个元素缺一不可。
+因为byte是8位的，而int是32位的，直接将byte转为int强转的化，可能会使前面的位数补1，从而导致整个32位的int类型的值为-1，
+所以应该&上一个int类型的255来完成最后8位的保留。
+
+总结一下read和write的特点：
+read是一种强转的方法，
+write能够获得数据的最低几位
+*/
+
+import java.io.*;
+
+class MyBufferedInputStreamDemo 
+{
+	private int count=0,pos=0;    // 分别是计数器与指针
+	private byte[] byt = new byte[1024*4];
+	private InputStream i;      // 文件流
+
+	MyBufferedInputStreamDemo(InputStream i)
+	{
+		this.i = i;
+	}
+
+	public int MyReader() throws IOException
+	{
+		if(count==0)
+		{
+			count = i.read(byt);      // 将字节流读到数组之中,并且返回读取到的数组的长度的值。
+			if(count<0)      // 这里就是当在数组中的元素已经取完的时候，就会返回一个-1.
+			{
+				return -1;
+			}
+			pos =0;      // 指针重新指向0，新的数组开始读取的位置
+			byte b = byt[pos];    // 将在字符数组中的元素取出。
+			count--;
+			pos++;
+ 
+			return b & 0xff;
+		}
+		
+		else if(count>0)
+		{
+ 			byte b = byt[pos];    // 将在字符数组中的元素取出。
+			count--;
+			pos++;
+			 
+			return b & 0xff;
+		}
+		return -1;
+	}
+
+	public void Myclose() throws IOException
+	{
+		i.close();
+	}
+}
+ 
