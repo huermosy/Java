@@ -1,0 +1,111 @@
+/*
+Action事件
+	创建一个基本的frame
+1.对frame进行基本设置;   包括位置大小，布局
+2.将组件添加到frame中;	 
+3.加载窗体事件;
+4.显示窗体;
+*/
+import java.awt.*;
+import java.awt.event.*;
+
+
+class  FrameDemo
+{
+	private Frame f;        // 这是一种懒汉式的定义方法，默认不会实例化，什么时候可以实例化的时候才用实例化。 因为后面会创建两个对象，所以分别是按钮和窗体两个东西。
+	private Button but;
+	private TextField tf;
+
+	FrameDemo()
+	{
+		init();
+	}
+	
+	public void init()
+	{
+		f = new Frame("组件窗体");
+		f.setBounds(300,200,300,200);
+		f.setLayout(new FlowLayout());
+		tf = new TextField(20);
+		but = new Button("my button");
+		f.add(but);
+		f.add(tf);
+		myEvent();
+		f.setVisible(true);
+	}
+
+	private void myEvent()
+	{
+		f.addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				System.exit(0);
+			}
+		});
+		/*
+		让按钮具备退出程序的功能：
+		按钮就是事件源;
+		那么选择哪个监听器？
+		通过关闭窗体示例了解到，想要知道那个组件具备什么样特有监听器。
+		需要查看该组件对象的功能。
+			通过查阅button的描述，发现按钮支持一个特有监听addActionListener。
+		*/
+		but.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("活动事件");
+			}
+		});
+	
+
+		// 加一个键盘监听，
+		tf.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				int code = e.getKeyCode();
+				if(!(code>=KeyEvent.VK_0 && code<=KeyEvent.VK_9))
+					System.out.println(code+".....是非法的");
+			}
+		});
+
+		 
+
+		tf.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_ENTER)
+					System.out.println("ctrl+enter is run");
+			}
+		});
+
+
+
+		/*
+			鼠标进入事件mouseEntered和鼠标点击mouseClicked事件，其中，getClickCount为得到当前的计数值
+		*/
+		but.addMouseListener(new MouseAdapter()          // 自定义的一个鼠标事件
+		{
+			private int count = 1;
+			private int clickCount = 1;
+			public void mouseEntered(MouseEvent e)
+			{
+				System.out.println("鼠标指针移入了按钮键"+count++);
+			}
+
+			public void mouseClicked(MouseEvent e)
+			{
+				if(e.getClickCount()==2)
+				System.out.println("点击鼠标"+clickCount++);
+			}
+		});
+	}
+
+	public static void main(String[] args) 
+	{
+		FrameDemo a = new FrameDemo();
+	}
+}                              
